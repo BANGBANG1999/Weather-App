@@ -19,6 +19,7 @@ function WeatherNewsItem() {
           throw new Error("City not found");
         }
 
+        console.log(responseData);
         setData(responseData);
         setError(null);
       } catch (error) {
@@ -46,7 +47,45 @@ function WeatherNewsItem() {
         </div>
         {data && (
           <div className="weather">
-            <img src="images/rain.png" className="weatherIcon" />
+            {data.weather[0].main === "Clouds" && (
+              <img src="images/clouds.png" className="weatherIcon" />
+            )}
+            {data.weather[0].main === "Haze" && (
+              <img src="images/clouds.png" className="weatherIcon" />
+            )}
+            {data.weather[0].main === "Clear" && (
+              <img src="images/clear.png" className="weatherIcon" />
+            )}
+            {data.weather[0].main === "Mist" && (
+              <img src="images/mist.png" className="weatherIcon" />
+            )}
+            {data.weather[0].main === "Smoke" && (
+              <img src="images/mist.png" className="weatherIcon" />
+            )}
+            {data.weather[0].main === "Drizzle" && (
+              <img src="images/drizzle.png" className="weatherIcon" />
+            )}
+            {data.weather[0].main === "Rain" && (
+              <img src="images/rain.png" className="weatherIcon" />
+            )}
+            {data.weather[0].main === "Humidity" && (
+              <img src="images/humidity.png" className="weatherIcon" />
+            )}
+            {data.weather[0].main === "Snow" && (
+              <img src="images/snow.png" className="weatherIcon" />
+            )}
+            {data.weather[0].main !== "Clouds" &&
+              data.weather[0].main !== "Clear" &&
+              data.weather[0].main !== "Mist" &&
+              data.weather[0].main !== "Smoke" &&
+              data.weather[0].main !== "Snow" &&
+              data.weather[0].main !== "Humidity" &&
+              data.weather[0].main !== "Haze" &&
+              data.weather[0].main !== "Drizzle" &&
+              data.weather[0].main !== "Rain" && (
+                <img src="images/clear.png" className="weatherIcon" />
+              )}
+            {/* <img src="images/rain.png" className="weatherIcon" /> */}
             <h1 className="temp">{data.main.temp}°C</h1>
             <h2 className="city">{data.name}</h2>
             <div className="details">
