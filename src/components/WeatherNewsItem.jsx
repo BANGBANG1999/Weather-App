@@ -15,9 +15,10 @@ function WeatherNewsItem() {
         const response = await fetch(api + apiKey);
         const responseData = await response.json();
 
-        if (!response) {
+        if (!response.ok) {
           throw new Error("City not found");
         }
+
         setData(responseData);
         setError(null);
       } catch (error) {
